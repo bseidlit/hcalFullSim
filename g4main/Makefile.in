@@ -149,7 +149,7 @@ am_libg4testbench_la_OBJECTS = Fun4AllMessenger.lo \
 	PHG4SteppingAction.lo PHG4Subsystem.lo PHG4TrackUserInfoV1.lo \
 	PHG4TruthEventAction.lo PHG4TruthSubsystem.lo \
 	PHG4TruthTrackingAction.lo PHG4UIsession.lo PHG4Utils.lo \
-	PHG4VertexSelection.lo CosmicSpray.lo ReadEICFiles.lo
+	PHG4VertexSelection.lo ReadEICFiles.lo CosmicSpray.lo
 libg4testbench_la_OBJECTS = $(am_libg4testbench_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -425,6 +425,7 @@ libg4testbench_la_LDFLAGS = \
 libg4testbench_la_LIBADD = \
   libphg4hit.la \
   -lboost_filesystem \
+  -leASTPhysicsList \
   -leicsmear \
   -lfun4all \
   -lg4decayer \
@@ -556,8 +557,8 @@ libg4testbench_la_SOURCES = \
   PHG4UIsession.cc \
   PHG4Utils.cc \
   PHG4VertexSelection.cc \
-  CosmicSpray.cc \
-  ReadEICFiles.cc
+  ReadEICFiles.cc \
+  CosmicSpray.cc
 
 
 ##############################################
@@ -611,8 +612,8 @@ pkginclude_HEADERS = \
   PHG4VertexSelection.h \
   PHG4VtxPoint.h \
   PHG4VtxPointv1.h \
-  CosmicSpray.h \
-  ReadEICFiles.h
+  ReadEICFiles.h \
+  CosmicSpray.h
 
 BUILT_SOURCES = testexternals.cc
 testexternals_g4hits_SOURCES = testexternals.cc

@@ -27,7 +27,8 @@ class CosmicSpray : public PHG4ParticleGeneratorBase
   void set_detector_dimensions(double x_max, double x_min, double z_min, double z_max);
   void set_sprayplane_offset(double x, double z);
 private:
-  static double EnergyAngularDistribution(double *val, double *par);
+  static double EnergyAngularDistribution(double val, double par);
+  static double EnergyAngularDistributionnew(double val, double par);
   static double GetBeta(double &gamma);
   static double GetGamma0(double &gamma);
 
@@ -51,7 +52,16 @@ private:
 
   static double _R_earth;
   static double _d_earth;
-
+  
+  static double _Emin;
+  static double _Emax;
+  static double _thetamin;
+  static double _thetamax;
+  static int _E_bin;
+  static int _theta_bin;
+  static double _length;
+  static int _nbin;
+  static double cdf[1000001];
   int _debug;
 
   PHG4InEvent *_InEvent = nullptr;

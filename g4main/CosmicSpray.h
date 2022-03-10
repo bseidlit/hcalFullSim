@@ -12,27 +12,25 @@
 #include <vector>
 #include "TF3.h"
 #include <g4main/PHG4InEvent.h>
-
+#include "EcoMug.h"
 class PHG4InEvent;
 class PHCompositeNode;
 
 class CosmicSpray : public PHG4ParticleGeneratorBase
 {
- public:
-  CosmicSpray(const std::string &name, const std::string &detector, const int &debug);
-  ~CosmicSpray() override {}
-  int process_event(PHCompositeNode *topNode) override;
+public:
+CosmicSpray(const std::string &name, const std::string &detector, const int &debug);
+ ~CosmicSpray() override {}
+ int process_event(PHCompositeNode *topNode) override;
   void add_particle(const std::string &name, const unsigned int count);
   void edit_cosmics_plane(double height, double x_max, double x_min, double z_min, double z_max);
   void set_detector_dimensions(double x_max, double x_min, double z_min, double z_max);
   void set_sprayplane_offset(double x, double z);
 private:
-  static double EnergyAngularDistribution(double *val, double *par);
-  static double GetBeta(double &gamma);
-  static double GetGamma0(double &gamma);
 
-  TF2 *_f_momentum;
   TF1 *_f_vertex;
+  EcoMug gen;
+ 
   static double _gun_e;
   static double _x_min;
   static double _x_max;
@@ -51,7 +49,7 @@ private:
 
   static double _R_earth;
   static double _d_earth;
-
+  
   int _debug;
 
   PHG4InEvent *_InEvent = nullptr;

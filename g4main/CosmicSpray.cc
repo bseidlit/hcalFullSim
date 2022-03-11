@@ -2,6 +2,7 @@
 // Author: Daniel Lis
 // Brief: Particel generator Class that sources a muon with a vertex and momentum that should mimic real life
 // modified by Shuhang on 03/2022: now this class serves as a wrapper class that drives "EcoMug" 
+
 #include "CosmicSpray.h"
 #include "EcoMug.h"
 #include <g4main/PHG4InEvent.h>
@@ -65,11 +66,10 @@ double CosmicSpray::_offz;
 
 
 
+
 class PHCompositeNode;
 class PHG4Particle;
 class PHG4ParticleGeneratorBase;
-
-
 
 
 
@@ -90,6 +90,7 @@ CosmicSpray::CosmicSpray(const std::string &name = "COSMICS", const std::string 
   _d_earth = 1000000;
   _offx = 100.;
   _offz = 100.;
+
 
   if (detector == "HCALSECTOR"){
     _detector_name = detector;
@@ -115,6 +116,7 @@ CosmicSpray::CosmicSpray(const std::string &name = "COSMICS", const std::string 
     _z_min_det = -304.91;
     _y_fix = 200;
 }
+
 
   gen.SetUseHSphere(); // half-spherical surface generation
   gen.SetHSphereRadius(5.); // half-sphere radius
@@ -143,6 +145,7 @@ int CosmicSpray::process_event(PHCompositeNode *topNode)
   double gun_x =0, gun_y =0, gun_z = 0;
   double gun_px = 0, gun_py = 0, gun_pz = 0;
   // bool GoodEvent = true;
+
   gen.Generate();
   std::array<double, 3> muon_position = gen.GetGenerationPosition();
   double muon_p = gen.GetGenerationMomentum();
@@ -165,6 +168,7 @@ int CosmicSpray::process_event(PHCompositeNode *topNode)
   gun_y = muon_position[2] * 100;
   gun_z = muon_position[0] * 100;
   
+
 
   if(_debug) std::cout<<"Momentum: "<<gun_px<<" / "<<gun_py<<" / "<<gun_pz<<std::endl;
   if(_debug)std::cout<<"total mom: "<<_gun_e<<std::endl;

@@ -35,6 +35,7 @@ libg4testbench_la_LDFLAGS = \
 libg4testbench_la_LIBADD = \
   libphg4hit.la \
   -lboost_filesystem \
+  -leASTPhysicsList \
   -leicsmear \
   -lfun4all \
   -lg4decayer \
@@ -164,8 +165,8 @@ libg4testbench_la_SOURCES = \
   PHG4UIsession.cc \
   PHG4Utils.cc \
   PHG4VertexSelection.cc \
-  CosmicSpray.cc \
-  ReadEICFiles.cc
+  ReadEICFiles.cc \
+  CosmicSpray.cc
 
 
 ##############################################
@@ -220,8 +221,8 @@ pkginclude_HEADERS = \
   PHG4VertexSelection.h \
   PHG4VtxPoint.h \
   PHG4VtxPointv1.h \
-  CosmicSpray.h \
-  ReadEICFiles.h
+  ReadEICFiles.h \
+  CosmicSpray.h
 
 ################################################
 # linking tests

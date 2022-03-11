@@ -16,7 +16,6 @@
 
 
 
-
 VPATH = @srcdir@
 am__is_gnu_make = test -n '$(MAKEFILE_LIST)' && test -n '$(MAKELEVEL)'
 am__make_running_with_option = \
@@ -81,15 +80,14 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-noinst_PROGRAMS = testexternals_g4hits$(EXEEXT) \
-	testexternals_g4tb$(EXEEXT)
+noinst_PROGRAMS = testexternals_CosmicSpray$(EXEEXT)
 subdir = .
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) depcomp \
-	$(nobase_dist_pcm_DATA) $(pkginclude_HEADERS) config.guess \
-	config.sub install-sh missing ltmain.sh
+	$(include_HEADERS) config.guess config.sub install-sh missing \
+	ltmain.sh
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
@@ -124,69 +122,20 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(pcmdir)" \
-	"$(DESTDIR)$(pkgincludedir)"
+am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libg4testbench_la_DEPENDENCIES = libphg4hit.la
-am_libg4testbench_la_OBJECTS = Fun4AllMessenger.lo \
-	G4TBMagneticFieldSetup.lo G4TBFieldMessenger.lo \
-	Fun4AllDstPileupInputManager.lo Fun4AllDstPileupMerger.lo \
-	Fun4AllSingleDstPileupInputManager.lo HepMCNodeReader.lo \
-	PHG4ConsistencyCheck.lo PHG4DisplayAction.lo PHG4Detector.lo \
-	PHG4HitReadBack.lo PHG4EtaParameterization.lo \
-	PHG4EtaPhiParameterization.lo PHG4HeadReco.lo \
-	PHG4InEventCompress.lo PHG4InEventReadBack.lo \
-	PHG4InputFilter.lo PHG4IonGun.lo PHG4MagneticField.lo \
-	PHG4ParticleGeneratorBase.lo PHG4ParticleGenerator.lo \
-	PHG4ParticleGeneratorVectorMeson.lo PHG4ParticleGeneratorD0.lo \
-	PHG4ParticleGun.lo PHG4PhenixDetector.lo \
-	PHG4PhenixDisplayAction.lo PHG4PhenixEventAction.lo \
-	PHG4PhenixStackingAction.lo PHG4PhenixSteppingAction.lo \
-	PHG4PhenixTrackingAction.lo PHG4PileupGenerator.lo \
-	PHG4PrimaryGeneratorAction.lo PHG4Reco.lo \
-	PHG4RegionInformation.lo PHG4ScoringManager.lo \
-	PHG4SimpleEventGenerator.lo PHG4StackingAction.lo \
-	PHG4SteppingAction.lo PHG4Subsystem.lo PHG4TrackUserInfoV1.lo \
-	PHG4TruthEventAction.lo PHG4TruthSubsystem.lo \
-	PHG4TruthTrackingAction.lo PHG4UIsession.lo PHG4Utils.lo \
-	PHG4VertexSelection.lo ReadEICFiles.lo CosmicSpray.lo
-libg4testbench_la_OBJECTS = $(am_libg4testbench_la_OBJECTS)
+libCosmicSpray_la_DEPENDENCIES =
+am_libCosmicSpray_la_OBJECTS = CosmicSpray.lo CosmicSpray_Dict.lo
+libCosmicSpray_la_OBJECTS = $(am_libCosmicSpray_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-libg4testbench_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
-	$(AM_CXXFLAGS) $(CXXFLAGS) $(libg4testbench_la_LDFLAGS) \
-	$(LDFLAGS) -o $@
-libphg4hit_la_DEPENDENCIES =
-am__objects_1 = EicEventHeader_Dict.lo EicEventHeaderv1_Dict.lo \
-	PHG4EventHeader_Dict.lo PHG4EventHeaderv1_Dict.lo \
-	PHG4Hit_Dict.lo PHG4Hitv1_Dict.lo PHG4HitEval_Dict.lo \
-	PHG4HitContainer_Dict.lo PHG4InEvent_Dict.lo \
-	PHG4Particle_Dict.lo PHG4Particlev1_Dict.lo \
-	PHG4Particlev2_Dict.lo PHG4Particlev3_Dict.lo \
-	PHG4Shower_Dict.lo PHG4Showerv1_Dict.lo PHG4VtxPoint_Dict.lo \
-	PHG4VtxPointv1_Dict.lo PHG4TruthInfoContainer_Dict.lo
-am_libphg4hit_la_OBJECTS = $(am__objects_1) EicEventHeader.lo \
-	EicEventHeaderv1.lo PHG4EventHeaderv1.lo PHG4Hit.lo \
-	PHG4Hitv1.lo PHG4HitContainer.lo PHG4HitDefs.lo PHG4HitEval.lo \
-	PHG4InEvent.lo PHG4Particle.lo PHG4Particlev1.lo \
-	PHG4Particlev2.lo PHG4Particlev3.lo PHG4Shower.lo \
-	PHG4Showerv1.lo PHG4TruthInfoContainer.lo PHG4VtxPoint.lo \
-	PHG4VtxPointv1.lo
-libphg4hit_la_OBJECTS = $(am_libphg4hit_la_OBJECTS)
-libphg4hit_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
-	$(AM_CXXFLAGS) $(CXXFLAGS) $(libphg4hit_la_LDFLAGS) $(LDFLAGS) \
-	-o $@
 PROGRAMS = $(noinst_PROGRAMS)
-am_testexternals_g4hits_OBJECTS = testexternals.$(OBJEXT)
-testexternals_g4hits_OBJECTS = $(am_testexternals_g4hits_OBJECTS)
-testexternals_g4hits_DEPENDENCIES = libphg4hit.la
-am_testexternals_g4tb_OBJECTS = testexternals.$(OBJEXT)
-testexternals_g4tb_OBJECTS = $(am_testexternals_g4tb_OBJECTS)
-testexternals_g4tb_DEPENDENCIES = libg4testbench.la
+am_testexternals_CosmicSpray_OBJECTS = testexternals.$(OBJEXT)
+testexternals_CosmicSpray_OBJECTS =  \
+	$(am_testexternals_CosmicSpray_OBJECTS)
+testexternals_CosmicSpray_DEPENDENCIES = libCosmicSpray.la
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -221,17 +170,16 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(libg4testbench_la_SOURCES) $(libphg4hit_la_SOURCES) \
-	$(testexternals_g4hits_SOURCES) $(testexternals_g4tb_SOURCES)
-DIST_SOURCES = $(libg4testbench_la_SOURCES) $(libphg4hit_la_SOURCES) \
-	$(testexternals_g4hits_SOURCES) $(testexternals_g4tb_SOURCES)
+SOURCES = $(libCosmicSpray_la_SOURCES) \
+	$(testexternals_CosmicSpray_SOURCES)
+DIST_SOURCES = $(libCosmicSpray_la_SOURCES) \
+	$(testexternals_CosmicSpray_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
-DATA = $(nobase_dist_pcm_DATA)
-HEADERS = $(pkginclude_HEADERS)
+HEADERS = $(include_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
@@ -281,7 +229,6 @@ AWK = @AWK@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
-CINTDEFS = @CINTDEFS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
 CXX = @CXX@
@@ -332,6 +279,7 @@ PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 RANLIB = @RANLIB@
+ROOTLIBS = @ROOTLIBS@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
@@ -391,240 +339,44 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
-AM_CXXFLAGS = `geant4-config --cflags`
-
-# set in configure.in to check if gcc version >= 4.8
-#if GCC_GE_48
-#  AM_CXXFLAGS += -std=c++11
-#endif
-
-# List of shared libraries to produce
-lib_LTLIBRARIES = \
-  libphg4hit.la \
-  libg4testbench.la
-
 AM_CPPFLAGS = \
   -I$(includedir) \
   -I$(OFFLINE_MAIN)/include \
-  -isystem$(ROOTSYS)/include \
-  -isystem$(XERCESCROOT)/include \
+  -I$(ROOTSYS)/include \
   -I$(OPT_SPHENIX)/include
 
-libphg4hit_la_LDFLAGS = \
+AM_LDFLAGS = \
   -L$(libdir) \
   -L$(OFFLINE_MAIN)/lib
 
-libphg4hit_la_LIBADD = \
-  -lphool
+include_HEADERS = \
+  CosmicSpray.h \
+  CosmicSprayLinkDef.h
 
-libg4testbench_la_LDFLAGS = \
-  -L$(libdir) \
-  -L$(OFFLINE_MAIN)/lib \
-  `geant4-config --libs`
+lib_LTLIBRARIES = \
+  libCosmicSpray.la 
 
-libg4testbench_la_LIBADD = \
-  libphg4hit.la \
-  -lboost_filesystem \
-  -leASTPhysicsList \
-  -leicsmear \
+libCosmicSpray_la_SOURCES = \
+  CosmicSpray.C \
+  CosmicSpray_Dict.C 
+
+libCosmicSpray_la_LIBADD = \
+  -lphool \
+  -lg4dst \
   -lfun4all \
-  -lg4decayer \
-  -lgsl \
-  -lgslcblas \
-  -lHepMC \
-  -lphfield \
-  -lphgeom \
-  -lphg4gdml \
-  -lphhepmc \
-  -lphparameter \
-  -lvararray
-
-
-# I/O dictionaries have to exist for root5 and root6. For ROOT6 we need
-# pcm files in addition. If someone can figure out how to make a list
-# so this list of dictionaries is transformed into a list of pcm files
-# following a simple naming convention, please change this accordingly and
-# let me know
-ROOTHITDICTS = \
-  EicEventHeader_Dict.cc \
-  EicEventHeaderv1_Dict.cc \
-  PHG4EventHeader_Dict.cc \
-  PHG4EventHeaderv1_Dict.cc \
-  PHG4Hit_Dict.cc \
-  PHG4Hitv1_Dict.cc \
-  PHG4HitEval_Dict.cc \
-  PHG4HitContainer_Dict.cc \
-  PHG4InEvent_Dict.cc \
-  PHG4Particle_Dict.cc \
-  PHG4Particlev1_Dict.cc \
-  PHG4Particlev2_Dict.cc \
-  PHG4Particlev3_Dict.cc \
-  PHG4Shower_Dict.cc \
-  PHG4Showerv1_Dict.cc \
-  PHG4VtxPoint_Dict.cc \
-  PHG4VtxPointv1_Dict.cc \
-  PHG4TruthInfoContainer_Dict.cc
-
-
-# this is a tweak to install files in $(libdir), automake refuses
-# to install other files in libdir, this construct gets around this
-pcmdir = $(libdir)
-nobase_dist_pcm_DATA = \
-  EicEventHeader_Dict_rdict.pcm \
-  EicEventHeaderv1_Dict_rdict.pcm \
-  PHG4EventHeader_Dict_rdict.pcm \
-  PHG4EventHeaderv1_Dict_rdict.pcm \
-  PHG4Hit_Dict_rdict.pcm \
-  PHG4Hitv1_Dict_rdict.pcm \
-  PHG4HitEval_Dict_rdict.pcm \
-  PHG4HitContainer_Dict_rdict.pcm \
-  PHG4InEvent_Dict_rdict.pcm \
-  PHG4Particle_Dict_rdict.pcm \
-  PHG4Particlev1_Dict_rdict.pcm \
-  PHG4Particlev2_Dict_rdict.pcm \
-  PHG4Particlev3_Dict_rdict.pcm \
-  PHG4Shower_Dict_rdict.pcm \
-  PHG4Showerv1_Dict_rdict.pcm \
-  PHG4VtxPoint_Dict_rdict.pcm \
-  PHG4VtxPointv1_Dict_rdict.pcm \
-  PHG4TruthInfoContainer_Dict_rdict.pcm
-
-libphg4hit_la_SOURCES = \
-  $(ROOTHITDICTS) \
-  EicEventHeader.cc \
-  EicEventHeaderv1.cc \
-  PHG4EventHeaderv1.cc \
-  PHG4Hit.cc \
-  PHG4Hitv1.cc \
-  PHG4HitContainer.cc \
-  PHG4HitDefs.cc \
-  PHG4HitEval.cc \
-  PHG4InEvent.cc \
-  PHG4Particle.cc \
-  PHG4Particlev1.cc \
-  PHG4Particlev2.cc \
-  PHG4Particlev3.cc \
-  PHG4Shower.cc \
-  PHG4Showerv1.cc \
-  PHG4TruthInfoContainer.cc \
-  PHG4VtxPoint.cc \
-  PHG4VtxPointv1.cc
-
-libg4testbench_la_SOURCES = \
-  Fun4AllMessenger.cc \
-  G4TBMagneticFieldSetup.cc \
-  G4TBFieldMessenger.cc \
-  Fun4AllDstPileupInputManager.cc \
-  Fun4AllDstPileupMerger.cc \
-  Fun4AllSingleDstPileupInputManager.cc \
-  HepMCNodeReader.cc \
-  PHG4ConsistencyCheck.cc \
-  PHG4DisplayAction.cc \
-  PHG4Detector.cc \
-  PHG4HitReadBack.cc \
-  PHG4EtaParameterization.cc \
-  PHG4EtaPhiParameterization.cc \
-  PHG4HeadReco.cc \
-  PHG4InEventCompress.cc \
-  PHG4InEventReadBack.cc \
-  PHG4InputFilter.cc \
-  PHG4IonGun.cc \
-  PHG4MagneticField.cc \
-  PHG4ParticleGeneratorBase.cc \
-  PHG4ParticleGenerator.cc \
-  PHG4ParticleGeneratorVectorMeson.cc \
-  PHG4ParticleGeneratorD0.cc \
-  PHG4ParticleGun.cc \
-  PHG4PhenixDetector.cc \
-  PHG4PhenixDisplayAction.cc \
-  PHG4PhenixEventAction.cc \
-  PHG4PhenixStackingAction.cc \
-  PHG4PhenixSteppingAction.cc \
-  PHG4PhenixTrackingAction.cc \
-  PHG4PileupGenerator.cc \
-  PHG4PrimaryGeneratorAction.cc \
-  PHG4Reco.cc \
-  PHG4RegionInformation.cc \
-  PHG4ScoringManager.cc \
-  PHG4SimpleEventGenerator.cc \
-  PHG4StackingAction.cc \
-  PHG4SteppingAction.cc \
-  PHG4Subsystem.cc \
-  PHG4TrackUserInfoV1.cc \
-  PHG4TruthEventAction.cc \
-  PHG4TruthSubsystem.cc \
-  PHG4TruthTrackingAction.cc \
-  PHG4UIsession.cc \
-  PHG4Utils.cc \
-  PHG4VertexSelection.cc \
-  ReadEICFiles.cc \
-  CosmicSpray.cc
-
-
-##############################################
-# please add new classes in alphabetical order
-pkginclude_HEADERS = \
-  EicEventHeader.h \
-  Fun4AllDstPileupInputManager.h \
-  Fun4AllDstPileupMerger.h \
-  Fun4AllSingleDstPileupInputManager.h \
-  HepMCNodeReader.h \
-  PHBBox.h \
-  PHG4ColorDefs.h \
-  PHG4Detector.h \
-  PHG4DisplayAction.h \
-  PHG4EventAction.h \
-  PHG4EventHeader.h \
-  PHG4HitDefs.h \
-  PHG4Hit.h \
-  PHG4Hitv1.h \
-  PHG4HitEval.h \
-  PHG4HitContainer.h \
-  PHG4InEvent.h \
-  PHG4IonGun.h \
-  PHG4Particle.h \
-  PHG4Particlev1.h \
-  PHG4Particlev2.h \
-  PHG4Particlev3.h \
-  PHG4ParticleGenerator.h \
-  PHG4ParticleGeneratorBase.h \
-  PHG4ParticleGeneratorD0.h \
-  PHG4ParticleGeneratorVectorMeson.h \
-  PHG4ParticleGun.h \
-  PHG4PhenixDetector.h \
-  PHG4PileupGenerator.h \
-  PHG4PrimaryGeneratorAction.h \
-  PHG4Reco.h \
-  PHG4RegionInformation.h \
-  PHG4ScoringManager.h \
-  PHG4SimpleEventGenerator.h \
-  PHG4Shower.h \
-  PHG4Showerv1.h \
-  PHG4StackingAction.h \
-  PHG4SteppingAction.h \
-  PHG4Subsystem.h \
-  PHG4TrackingAction.h \
-  PHG4TrackUserInfoV1.h \
-  PHG4TruthInfoContainer.h \
-  PHG4TruthSubsystem.h \
-  PHG4Units.h \
-  PHG4Utils.h \
-  PHG4VertexSelection.h \
-  PHG4VtxPoint.h \
-  PHG4VtxPointv1.h \
-  ReadEICFiles.h \
-  CosmicSpray.h
+  -lSubsysReco \
+  -lcalo_io 
 
 BUILT_SOURCES = testexternals.cc
-testexternals_g4hits_SOURCES = testexternals.cc
-testexternals_g4hits_LDADD = libphg4hit.la
-testexternals_g4tb_SOURCES = testexternals.cc
-testexternals_g4tb_LDADD = libg4testbench.la
+testexternals_CosmicSpray_SOURCES = testexternals.cc
+testexternals_CosmicSpray_LDADD = \
+  libCosmicSpray.la 
+
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .cc .lo .o .obj
+.SUFFIXES: .C .cc .lo .o .obj
 am--refresh: Makefile
 	@:
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
@@ -695,11 +447,8 @@ clean-libLTLIBRARIES:
 	  rm -f $${locs}; \
 	}
 
-libg4testbench.la: $(libg4testbench_la_OBJECTS) $(libg4testbench_la_DEPENDENCIES) $(EXTRA_libg4testbench_la_DEPENDENCIES) 
-	$(AM_V_CXXLD)$(libg4testbench_la_LINK) -rpath $(libdir) $(libg4testbench_la_OBJECTS) $(libg4testbench_la_LIBADD) $(LIBS)
-
-libphg4hit.la: $(libphg4hit_la_OBJECTS) $(libphg4hit_la_DEPENDENCIES) $(EXTRA_libphg4hit_la_DEPENDENCIES) 
-	$(AM_V_CXXLD)$(libphg4hit_la_LINK) -rpath $(libdir) $(libphg4hit_la_OBJECTS) $(libphg4hit_la_LIBADD) $(LIBS)
+libCosmicSpray.la: $(libCosmicSpray_la_OBJECTS) $(libCosmicSpray_la_DEPENDENCIES) $(EXTRA_libCosmicSpray_la_DEPENDENCIES) 
+	$(AM_V_CXXLD)$(CXXLINK) -rpath $(libdir) $(libCosmicSpray_la_OBJECTS) $(libCosmicSpray_la_LIBADD) $(LIBS)
 
 clean-noinstPROGRAMS:
 	@list='$(noinst_PROGRAMS)'; test -n "$$list" || exit 0; \
@@ -710,13 +459,9 @@ clean-noinstPROGRAMS:
 	echo " rm -f" $$list; \
 	rm -f $$list
 
-testexternals_g4hits$(EXEEXT): $(testexternals_g4hits_OBJECTS) $(testexternals_g4hits_DEPENDENCIES) $(EXTRA_testexternals_g4hits_DEPENDENCIES) 
-	@rm -f testexternals_g4hits$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(testexternals_g4hits_OBJECTS) $(testexternals_g4hits_LDADD) $(LIBS)
-
-testexternals_g4tb$(EXEEXT): $(testexternals_g4tb_OBJECTS) $(testexternals_g4tb_DEPENDENCIES) $(EXTRA_testexternals_g4tb_DEPENDENCIES) 
-	@rm -f testexternals_g4tb$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(testexternals_g4tb_OBJECTS) $(testexternals_g4tb_LDADD) $(LIBS)
+testexternals_CosmicSpray$(EXEEXT): $(testexternals_CosmicSpray_OBJECTS) $(testexternals_CosmicSpray_DEPENDENCIES) $(EXTRA_testexternals_CosmicSpray_DEPENDENCIES) 
+	@rm -f testexternals_CosmicSpray$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(testexternals_CosmicSpray_OBJECTS) $(testexternals_CosmicSpray_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -725,90 +470,29 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CosmicSpray.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/EicEventHeader.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/EicEventHeader_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/EicEventHeaderv1.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/EicEventHeaderv1_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Fun4AllDstPileupInputManager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Fun4AllDstPileupMerger.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Fun4AllMessenger.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Fun4AllSingleDstPileupInputManager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/G4TBFieldMessenger.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/G4TBMagneticFieldSetup.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/HepMCNodeReader.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4ConsistencyCheck.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Detector.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4DisplayAction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4EtaParameterization.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4EtaPhiParameterization.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4EventHeader_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4EventHeaderv1.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4EventHeaderv1_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4HeadReco.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Hit.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4HitContainer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4HitContainer_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4HitDefs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4HitEval.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4HitEval_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4HitReadBack.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Hit_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Hitv1.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Hitv1_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4InEvent.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4InEventCompress.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4InEventReadBack.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4InEvent_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4InputFilter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4IonGun.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4MagneticField.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Particle.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4ParticleGenerator.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4ParticleGeneratorBase.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4ParticleGeneratorD0.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4ParticleGeneratorVectorMeson.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4ParticleGun.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Particle_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Particlev1.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Particlev1_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Particlev2.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Particlev2_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Particlev3.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Particlev3_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4PhenixDetector.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4PhenixDisplayAction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4PhenixEventAction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4PhenixStackingAction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4PhenixSteppingAction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4PhenixTrackingAction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4PileupGenerator.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4PrimaryGeneratorAction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Reco.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4RegionInformation.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4ScoringManager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Shower.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Shower_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Showerv1.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Showerv1_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4SimpleEventGenerator.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4StackingAction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4SteppingAction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Subsystem.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4TrackUserInfoV1.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4TruthEventAction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4TruthInfoContainer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4TruthInfoContainer_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4TruthSubsystem.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4TruthTrackingAction.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4UIsession.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4Utils.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4VertexSelection.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4VtxPoint.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4VtxPoint_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4VtxPointv1.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/PHG4VtxPointv1_Dict.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ReadEICFiles.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CosmicSpray_Dict.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testexternals.Po@am__quote@
+
+.C.o:
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
+
+.C.obj:
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.C.lo:
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
 .cc.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -839,51 +523,27 @@ clean-libtool:
 
 distclean-libtool:
 	-rm -f libtool config.lt
-install-nobase_dist_pcmDATA: $(nobase_dist_pcm_DATA)
+install-includeHEADERS: $(include_HEADERS)
 	@$(NORMAL_INSTALL)
-	@list='$(nobase_dist_pcm_DATA)'; test -n "$(pcmdir)" || list=; \
+	@list='$(include_HEADERS)'; test -n "$(includedir)" || list=; \
 	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(pcmdir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(pcmdir)" || exit 1; \
-	fi; \
-	$(am__nobase_list) | while read dir files; do \
-	  xfiles=; for file in $$files; do \
-	    if test -f "$$file"; then xfiles="$$xfiles $$file"; \
-	    else xfiles="$$xfiles $(srcdir)/$$file"; fi; done; \
-	  test -z "$$xfiles" || { \
-	    test "x$$dir" = x. || { \
-	      echo " $(MKDIR_P) '$(DESTDIR)$(pcmdir)/$$dir'"; \
-	      $(MKDIR_P) "$(DESTDIR)$(pcmdir)/$$dir"; }; \
-	    echo " $(INSTALL_DATA) $$xfiles '$(DESTDIR)$(pcmdir)/$$dir'"; \
-	    $(INSTALL_DATA) $$xfiles "$(DESTDIR)$(pcmdir)/$$dir" || exit $$?; }; \
-	done
-
-uninstall-nobase_dist_pcmDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(nobase_dist_pcm_DATA)'; test -n "$(pcmdir)" || list=; \
-	$(am__nobase_strip_setup); files=`$(am__nobase_strip)`; \
-	dir='$(DESTDIR)$(pcmdir)'; $(am__uninstall_files_from_dir)
-install-pkgincludeHEADERS: $(pkginclude_HEADERS)
-	@$(NORMAL_INSTALL)
-	@list='$(pkginclude_HEADERS)'; test -n "$(pkgincludedir)" || list=; \
-	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(pkgincludedir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(pkgincludedir)" || exit 1; \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(includedir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(includedir)" || exit 1; \
 	fi; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(pkgincludedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(pkgincludedir)" || exit $$?; \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(includedir)" || exit $$?; \
 	done
 
-uninstall-pkgincludeHEADERS:
+uninstall-includeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(pkginclude_HEADERS)'; test -n "$(pkgincludedir)" || list=; \
+	@list='$(include_HEADERS)'; test -n "$(includedir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(pkgincludedir)'; $(am__uninstall_files_from_dir)
+	dir='$(DESTDIR)$(includedir)'; $(am__uninstall_files_from_dir)
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -1103,9 +763,9 @@ distcleancheck: distclean
 check-am: all-am
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(PROGRAMS) $(DATA) $(HEADERS)
+all-am: Makefile $(LTLIBRARIES) $(PROGRAMS) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(pcmdir)" "$(DESTDIR)$(pkgincludedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1164,7 +824,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-nobase_dist_pcmDATA install-pkgincludeHEADERS
+install-data-am: install-includeHEADERS
 
 install-dvi: install-dvi-am
 
@@ -1212,8 +872,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libLTLIBRARIES uninstall-nobase_dist_pcmDATA \
-	uninstall-pkgincludeHEADERS
+uninstall-am: uninstall-includeHEADERS uninstall-libLTLIBRARIES
 
 .MAKE: all check install install-am install-strip
 
@@ -1227,15 +886,14 @@ uninstall-am: uninstall-libLTLIBRARIES uninstall-nobase_dist_pcmDATA \
 	dvi-am html html-am info info-am install install-am \
 	install-data install-data-am install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-libLTLIBRARIES \
-	install-man install-nobase_dist_pcmDATA install-pdf \
-	install-pdf-am install-pkgincludeHEADERS install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
-	uninstall-am uninstall-libLTLIBRARIES \
-	uninstall-nobase_dist_pcmDATA uninstall-pkgincludeHEADERS
+	install-includeHEADERS install-info install-info-am \
+	install-libLTLIBRARIES install-man install-pdf install-pdf-am \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags tags-am uninstall uninstall-am uninstall-includeHEADERS \
+	uninstall-libLTLIBRARIES
 
 
 testexternals.cc:
@@ -1245,14 +903,11 @@ testexternals.cc:
 	echo "  return 0;" >> $@
 	echo "}" >> $@
 
-%_Dict.cc: %.h %LinkDef.h
-	rootcint -f $@ @CINTDEFS@ $(DEFAULT_INCLUDES) $(AM_CPPFLAGS) $^
-
-#just to get the dependency
-%_Dict_rdict.pcm: %_Dict.cc ;
+%_Dict.C: %.h %LinkDef.h
+	rootcint -f $@ -c $(CINTFLAGS) $(DEFS) $(DEFAULT_INCLUDES) $(AM_CPPFLAGS) $^
 
 clean-local:
-	rm -f *Dict* $(BUILT_SOURCES) *.pcm
+	rm -f *Dict* $(BUILT_SOURCES)
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

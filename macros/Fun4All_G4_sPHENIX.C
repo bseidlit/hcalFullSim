@@ -3,8 +3,7 @@
 
 #include <GlobalVariables.C>
 
-#include <HCALCalibTree.h>
-#include "g4main/CosmicSpray.h"
+#include "HCALCalibTree.h"
 
 #include <DisplayOn.C>
 #include <G4Setup_sPHENIX.C>
@@ -32,12 +31,12 @@
 #include <phool/recoConsts.h>
 
 R__LOAD_LIBRARY(libfun4all.so)
-
+R__LOAD_LIBRARY(libHCALCalibTree.so)
 // For HepMC Hijing
 // try inputFile = /sphenix/sim/sim01/sphnxpro/sHijing_HepMC/sHijing_0-12fm.dat
 
 int Fun4All_G4_sPHENIX(
-    const int nEvents = 1,
+    const int nEvents = 1000,
     const string &inputFile = "https://www.phenix.bnl.gov/WWW/publish/phnxbld/sPHENIX/files/sPHENIX_G4Hits_sHijing_9-11fm_00000_00010.root",
     const string &outputFile = "G4sPHENIX.root",
     const string &embed_input_file = "https://www.phenix.bnl.gov/WWW/publish/phnxbld/sPHENIX/files/sPHENIX_G4Hits_sHijing_9-11fm_00000_00010.root",
@@ -184,8 +183,8 @@ int Fun4All_G4_sPHENIX(
   int debug_mine = 1;
 
   //CosmicSpray *cosmics = new CosmicSpray("COSMICS", 4, z_max,x_max,debug_mine);
-  CosmicSpray *cosmics = new CosmicSpray("COSMICS","FULL",1);
-  cosmics->add_particle("mu-",1);
+  CosmicSpray *cosmics = new CosmicSpray("COSMICS",650);
+ 
   se->registerSubsystem(cosmics);
 
   if (Input::GUN)
@@ -266,7 +265,7 @@ int Fun4All_G4_sPHENIX(
   //======================
 
   // QA, main switch
-  Enable::QA = true;
+  Enable::QA = false;
 
   // Global options (enabled for all enables subsystems - if implemented)
   //  Enable::ABSORBER = true;
@@ -324,7 +323,7 @@ int Fun4All_G4_sPHENIX(
   Enable::HCALIN_CELL = Enable::HCALIN && true;
   Enable::HCALIN_TOWER = Enable::HCALIN_CELL && true;
   Enable::HCALIN_CLUSTER = Enable::HCALIN_TOWER && true;
-  Enable::HCALIN_EVAL = Enable::HCALIN_CLUSTER && true;
+  Enable::HCALIN_EVAL = Enable::HCALIN_CLUSTER && false;
   Enable::HCALIN_QA = Enable::HCALIN_CLUSTER and Enable::QA && true;
 
   Enable::MAGNET = true;
@@ -335,12 +334,12 @@ int Fun4All_G4_sPHENIX(
   Enable::HCALOUT_CELL = Enable::HCALOUT && true;
   Enable::HCALOUT_TOWER = Enable::HCALOUT_CELL && true;
   Enable::HCALOUT_CLUSTER = Enable::HCALOUT_TOWER && true;
-  Enable::HCALOUT_EVAL = Enable::HCALOUT_CLUSTER && true;
+  Enable::HCALOUT_EVAL = Enable::HCALOUT_CLUSTER && false;
   Enable::HCALOUT_QA = Enable::HCALOUT_CLUSTER and Enable::QA && true;
 
   Enable::EPD = false;
 
-  Enable::BEAMLINE = true;
+  Enable::BEAMLINE = false;
 //  Enable::BEAMLINE_ABSORBER = true;  // makes the beam line magnets sensitive volumes
 //  Enable::BEAMLINE_BLACKHOLE = true; // turns the beamline magnets into black holes
   Enable::ZDC = false;
@@ -376,10 +375,10 @@ int Fun4All_G4_sPHENIX(
   // particle flow jet reconstruction - needs topoClusters!
   Enable::PARTICLEFLOW = true && Enable::TOPOCLUSTER;
   // centrality reconstruction
-  Enable::CENTRALITY = true;
+  Enable::CENTRALITY = false;
 
   // new settings using Enable namespace in GlobalVariables.C
-  Enable::BLACKHOLE = true;
+  Enable::BLACKHOLE = false;
   //Enable::BLACKHOLE_SAVEHITS = false; // turn off saving of bh hits
   //BlackHoleGeometry::visible = true;
 
